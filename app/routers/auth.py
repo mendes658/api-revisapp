@@ -1,9 +1,7 @@
-from fastapi import FastAPI, Response, status, HTTPException, APIRouter, Depends, Header, Request
-from fastapi.responses import JSONResponse
+from fastapi import Response, status, HTTPException, APIRouter, Depends, Request
 from .. import utils, schemas, oauth2
 import psycopg2
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
-import datetime
 
 
 router = APIRouter()
@@ -57,6 +55,6 @@ def authUser(request: Request):
     return user
 
 @router.get('/log_out', status_code=status.HTTP_200_OK)
-def logOut(request: Request, response: Response):
+def logOut(response: Response):
     response.set_cookie(httponly=True, key= "acess_token", value=None, samesite='none')
     return {'log_out': 'ok'}

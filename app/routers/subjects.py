@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Response, status, HTTPException, APIRouter, Depends, Cookie, Request
+from fastapi import Response, status, HTTPException, APIRouter, Depends, Request
 from .. import utils, schemas, oauth2
 from datetime import datetime, timezone, timedelta
 import psycopg2
@@ -15,6 +15,7 @@ def getlast11days():
         last11.append(nowStr)
         now = now - timedelta(days=1)
     return last11
+
 
 @router.post('/add_subject', status_code=status.HTTP_201_CREATED)
 def addSubject(request: Request, subject: schemas.AddSubject, database = Depends(utils.connectDb)):
@@ -41,8 +42,6 @@ def addSubject(request: Request, subject: schemas.AddSubject, database = Depends
         created.added = True
         print(created)
         return created
-
-
 
 
 @router.get('/get_all_subjects')
@@ -141,7 +140,6 @@ def getLast11(request: Request, database = Depends(utils.connectDb)):
                         detail=f'Invalid credentials')
     
     user = oauth2.getCurrentUser(token)
-    
     cursor = database[1]
 
     tomorrow = datetime.now(timezone.utc).astimezone() + timedelta(days=1)
@@ -158,6 +156,7 @@ def getLast11(request: Request, database = Depends(utils.connectDb)):
                         GROUP BY subjects.subject_name",(user, str(before_12), str(tomorrow)))
     except psycopg2.errors.NullValueNotAllowed:
          raise HTTPException(status.HTTP_404_NOT_FOUND, detail='No subject found')
+    
     try:
         subsDict = cursor.fetchall()
     except:
@@ -165,7 +164,6 @@ def getLast11(request: Request, database = Depends(utils.connectDb)):
 
     subsWithLessonAmount = {}
 
-    
     for i in subsDict:
         revs = i['all_dates']
         subject = i['subject_name']

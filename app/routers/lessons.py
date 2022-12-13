@@ -1,6 +1,5 @@
-from fastapi import FastAPI, Response, status, HTTPException, APIRouter, Depends, Request
+from fastapi import status, HTTPException, APIRouter, Depends, Request
 from .. import utils, schemas, oauth2
-import datetime
 
 router = APIRouter()
 subjects = {}
@@ -17,10 +16,6 @@ def addLesson(request: Request, post: schemas.AddLesson, database = Depends(util
     conn = database[0]
     cursor = database[1]
     
-    print(post.first_rev_date)
-    print(post.last_rev_date)
-    print(post.date)
-
     cursor.execute('SELECT id FROM subjects WHERE user_id = %s and subject_name = %s',(user, post.chosen_subject))
     subjectID = cursor.fetchone()
 

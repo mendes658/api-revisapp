@@ -2,9 +2,6 @@ from fastapi import FastAPI
 from .routers import auth, lessons, subjects
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
-from . import utils, schemas, oauth2
-from .config import settings
-
 
 
 origins = ["http://localhost:8080", "http://10.0.0.105:8080", "http://localhost:3000"]

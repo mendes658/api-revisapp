@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 
 
-
 class AddSubject(BaseModel):
     subject: str
 
