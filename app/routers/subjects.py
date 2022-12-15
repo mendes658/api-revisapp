@@ -34,6 +34,8 @@ def addSubject(request: Request, subject: schemas.AddSubject, database = Depends
     elif len(subject.subject) > 25:
         raise HTTPException(status.HTTP_406_NOT_ACCEPTABLE  , detail= f'Subject length > 25')
     else:
+        counters.add1SubjectCounter(database)
+
         cursor.execute('INSERT INTO subjects (subject_name, user_id) VALUES (%s, %s) RETURNING *', (
             subject.subject, user
         ))
@@ -41,7 +43,7 @@ def addSubject(request: Request, subject: schemas.AddSubject, database = Depends
         conn.commit()
         created.added = True
 
-        counters.add1SubjectCounter(database)
+ 
         return created
 
 
