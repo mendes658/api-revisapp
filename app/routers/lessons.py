@@ -28,7 +28,7 @@ def addLesson(request: Request, post: schemas.AddLesson, database = Depends(util
         created = cursor.fetchall()
         conn.commit()
         
-        counters.add1LessonCounter(database)
+        counters.add1LessonCounter(database) 
 
         return created
 

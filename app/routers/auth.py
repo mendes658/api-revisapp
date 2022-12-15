@@ -1,5 +1,5 @@
 from fastapi import Response, status, HTTPException, APIRouter, Depends, Request
-from .. import utils, schemas, oauth2
+from .. import utils, schemas, oauth2, counters
 import psycopg2
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 
@@ -20,6 +20,8 @@ def createUser(user: schemas.CreateUser, database = Depends(utils.connectDb)):
         ))
         created = cursor.fetchone()
         conn.commit()
+
+        counters.add1UsersCreatedCounter(database)
     except psycopg2.errors.UniqueViolation:
         raise HTTPException(status.HTTP_409_CONFLICT, detail= f'User already exists')
     

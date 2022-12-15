@@ -1,5 +1,5 @@
 from fastapi import Response, status, HTTPException, APIRouter, Depends, Request
-from .. import utils, schemas, oauth2
+from .. import utils, schemas, oauth2, counters
 from datetime import datetime, timezone, timedelta
 import psycopg2
 
@@ -41,11 +41,12 @@ def addSubject(request: Request, subject: schemas.AddSubject, database = Depends
         conn.commit()
         created.added = True
 
+        counters.add1SubjectCounter(database)
         return created
 
 
 @router.get('/get_all_subjects')
-def getSubjects(response: Response, request: Request, database = Depends(utils.connectDb)):
+def getSubjects(request: Request, database = Depends(utils.connectDb)):
     
     try:
         token = request.cookies['acess_token'].split()[1]
