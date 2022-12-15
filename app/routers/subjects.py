@@ -40,7 +40,7 @@ def addSubject(request: Request, subject: schemas.AddSubject, database = Depends
         created = cursor.fetchone()
         conn.commit()
         created.added = True
-        print(created)
+
         return created
 
 

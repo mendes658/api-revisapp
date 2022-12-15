@@ -1,8 +1,7 @@
 from fastapi import status, HTTPException, APIRouter, Depends, Request
-from .. import utils, schemas, oauth2
-
+from .. import utils, schemas, oauth2, counters
 router = APIRouter()
-subjects = {}
+
 
 @router.post('/add_lesson', status_code=status.HTTP_201_CREATED)
 def addLesson(request: Request, post: schemas.AddLesson, database = Depends(utils.connectDb)):
@@ -28,6 +27,8 @@ def addLesson(request: Request, post: schemas.AddLesson, database = Depends(util
         
         created = cursor.fetchall()
         conn.commit()
+        
+        counters.add1LessonCounter(database)
 
         return created
 
