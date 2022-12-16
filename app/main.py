@@ -30,6 +30,8 @@ app.include_router(auth.router)
 app.include_router(lessons.router)
 app.include_router(subjects.router)
 
-
+@app.get('/')
+def helloWorld():
+    return {'message': 'hello world'}
 
 

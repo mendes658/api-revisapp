@@ -1,6 +1,4 @@
-from .utils import connectDb
-from fastapi import Depends, HTTPException, status
-from datetime import datetime
+from fastapi import HTTPException, status
 
 # counters guarda as funções para controle de quantas informações foram inseridas
 # no banco de dados em um dia
