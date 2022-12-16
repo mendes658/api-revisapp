@@ -4,13 +4,13 @@ from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
 
 
-origins = ["http://localhost:8080", "http://10.0.0.105:8080", "http://localhost:3000"]
+origins = ["http://localhost:8080", "https://revisapp.vercel.app"]
 
 
 middleware = [
     Middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=origins,
         allow_credentials=True,
         allow_methods=['*'],
         allow_headers=['*']
