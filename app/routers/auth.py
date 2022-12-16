@@ -42,7 +42,7 @@ def login(response: Response, userInfo: OAuth2PasswordRequestForm = Depends(), d
                         detail=f'Invalid credentials')
     
     access_token = oauth2.createAccessToken(data={"user_id": user['id']})
-    response.set_cookie(httponly=True, key= "acess_token", value=f"bearer {access_token}", samesite='none')
+    response.set_cookie(httponly=True, key= "acess_token", value=f"bearer {access_token}", samesite='none', secure=True)
     return {"access_token": access_token, "token_type": "bearer"}
 
 
