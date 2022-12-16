@@ -73,7 +73,7 @@ def getSubjects(request: Request, database = Depends(utils.connectDb)):
 
     return {"subjects": subsList}
 
-@router.post('/delete_subjects/', status_code=status.HTTP_200_OK)
+@router.post('/delete_subjects/', status_code=status.HTTP_202_ACCEPTED)
 def deleteSubjects(request: Request, subjects: schemas.DeleteSubjects, database = Depends(utils.connectDb)):
     try:
         token = request.cookies['acess_token'].split()[1]
