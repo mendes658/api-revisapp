@@ -58,5 +58,5 @@ def authUser(request: Request):
 
 @router.get('/log_out', status_code=status.HTTP_200_OK)
 def logOut(response: Response):
-    response.set_cookie(httponly=True, key= "acess_token", value=None, samesite='none')
+    response.set_cookie(httponly=True, key= "acess_token", value=None, samesite='none', secure=True)
     return {'log_out': 'ok'}
