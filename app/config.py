@@ -1,5 +1,7 @@
 from pydantic import BaseSettings
 
+# pega as environment variables
+
 class Settings(BaseSettings):
     database_hostname: str 
     database_password: str 

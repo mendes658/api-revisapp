@@ -60,8 +60,6 @@ def getLessons(request: Request, subject: str, database = Depends(utils.connectD
     return {"lessons": listGot}
 
 
-
-# update front-end to switch from list to string separated by commas
 @router.post('/delete_lessons', status_code=status.HTTP_200_OK)
 def deleteLessons(request: Request, post: schemas.DeleteLesson, database = Depends(utils.connectDb)):
 
