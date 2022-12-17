@@ -10,7 +10,7 @@ def getlast11days():
     last11 = []
     
     now = datetime.now(timezone.utc).astimezone() - timedelta(days=1)
-    for i in range(11):
+    for i in range(12):
         nowStr = now.strftime('%Y-%m-%d')
         last11.append(nowStr)
         now = now - timedelta(days=1)
