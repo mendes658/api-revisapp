@@ -147,7 +147,7 @@ def getLast11(request: Request, database = Depends(utils.connectDb)):
 
     tomorrow = datetime.now(timezone.utc).astimezone() + timedelta(days=1)
     tomorrow = tomorrow.strftime('%Y-%m-%d')
-    before_12 = datetime.now(timezone.utc).astimezone() - timedelta(days=11)
+    before_12 = datetime.now(timezone.utc).astimezone() - timedelta(days=12)
     before_12 = before_12.strftime('%Y-%m-%d')
     try:
         cursor.execute("SELECT subjects.subject_name, array_agg(lessons.date) AS all_dates FROM lessons\
