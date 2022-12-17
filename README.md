@@ -8,10 +8,10 @@
 pip install -r requirements.txt
 ```
 
-## Crie um arquivo chamado .env na pasta principal do projeto contento as seguintes informações:
+## Crie um arquivo chamado .env na pasta principal do projeto contento as seguintes variáveis de ambiente:
 ```
 DATABASE_HOSTNAME=localhost
-DATABASE_PASSWORD=senha
+DATABASE_PASSWORD=sua senha
 DATABASE_USERNAME=username (geralmente é postgres)
 DATABASE_NAME=nome da sua database
 SECRET_KEY=uma sequência de caracteres aleatórios para a secret key do token jwt
