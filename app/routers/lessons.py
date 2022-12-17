@@ -45,7 +45,7 @@ def getLessons(request: Request, subject: str, database = Depends(utils.connectD
     
     cursor = database[1]
     try:
-        cursor.execute('SELECT lessons.id, lessons.lesson, lessons.created_at\
+        cursor.execute('SELECT lessons.id, lessons.lesson, lessons.date\
                         FROM lessons\
                         INNER JOIN subjects ON subjects.id = lessons.subject_id\
                         INNER JOIN users ON users.id = subjects.user_id\
@@ -55,7 +55,7 @@ def getLessons(request: Request, subject: str, database = Depends(utils.connectD
     
     got = cursor.fetchall()
 
-    listGot = [[i['id'], i['lesson'], i['created_at'].strftime('%d/%m/%Y')] for i in got]
+    listGot = [[i['id'], i['lesson'], i['date'].strftime('%d/%m/%Y')] for i in got]
 
     return {"lessons": listGot}
 
