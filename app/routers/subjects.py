@@ -9,7 +9,7 @@ subjects = {}
 def getlast11days():
     last11 = []
     
-    now = datetime.now(timezone.utc).astimezone()
+    now = datetime.now(timezone.utc).astimezone() - timedelta(days=1)
     for i in range(11):
         nowStr = now.strftime('%Y-%m-%d')
         last11.append(nowStr)
@@ -172,7 +172,7 @@ def getLast11(request: Request, database = Depends(utils.connectDb)):
         subject = i['subject_name']
         last11 = {k:0 for k in getlast11days()}
         for rev in revs:
-            rev = rev + timedelta(hours=3)
+            rev = rev
             dateStr = rev.strftime('%Y-%m-%d')
             last11[dateStr] = last11.get(dateStr, 0) + 1
         subsWithLessonAmount[subject] = list(last11.values())[::-1]
