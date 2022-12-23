@@ -32,7 +32,7 @@ app.include_router(lessons.router)
 app.include_router(subjects.router)
 
 @app.get('/')
-def helloWorld():
-    return {'message': 'hello world'}
+def mengo():
+    return {'mengo': 'mengo\nmengo\nmengo\nmengo\nmengo\nmengo\nmengo\nmengo\nmengo'}
 
 
