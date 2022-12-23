@@ -33,6 +33,6 @@ app.include_router(subjects.router)
 
 @app.get('/')
 def mengo():
-    return {'mengo': 'mengo mengo mengo mengo mengo mengo mengo mengo'}
+    return {'mengo': 'mengo mendes :D :D :D '}
 
 
