@@ -18,7 +18,7 @@ def connectDb():
     while not over:
         try:
             conn = psycopg2.connect(host = settings.database_hostname, database = settings.database_name,
-            user = settings.database_username, 
+            user = settings.database_username, port = settings.database_port,
             password = settings.database_password, cursor_factory=RealDictCursor)
             cursor = conn.cursor()
             print('Database connection was succesfull')
