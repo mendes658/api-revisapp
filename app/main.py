@@ -4,7 +4,7 @@ from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
 
 
-origins = ["https://revisapp.vercel.app", "https://pedromendes.xyz"]
+origins = ["https://revisapp.vercel.app", "https://pedromendes.xyz", "https://revisapp.vercel.app/"]
 
 
 middleware = [
